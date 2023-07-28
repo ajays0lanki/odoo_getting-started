@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_property_offer_sheet">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="property">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                            <h2><strong>Salesman: </strong>
+                            <span t-field="property.salesperson_id" style="display:inline"/></h2>
+                            <t t-call="estate.report_salesman_property_sheet"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_salesman_property_sheet">
+        <t t-call="web.html_container">
+                        <h2>
+                                <span t-field="property.name"/>
+                        </h2>
+                        <div>
+                                <strong>Expected Prise: </strong>
+                                <span t-field="property.expected_price"/>
+                        </div>
+                        <div>
+                                <strong>Status: </strong>
+                                <span t-field="property.state"/>
+                        </div>
+                        <t t-if="len(property.offer_ids) > 0">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Price</th>
+                                        <th>Partner</th>
+                                        <th>Validity(days)</th>
+                                        <th>Deadline</th>
+                                        <th>State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="offers" t-value="property.mapped('offer_ids')"/>
+                                    <tr t-foreach="offers" t-as="offer">
+                                        <td> <span t-field="offer.price"/> </td>
+                                        <td> <span t-field="offer.partner_id"/> </td>
+                                        <td> <span t-field="offer.validity"/> </td>
+                                        <td> <span t-field="offer.date_deadline"/> </td>
+                                        <td> <span t-field="offer.status"/> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="" >
+                            <h2 style="color:grey">There are no offers added yet...</h2>
+                        </t>
+            </t>
+    </template>
+	<record id="report_property_offer_action" model="ir.actions.report">
+		<field name="name">Property Offer Report</field>
+		<field name="model">estate.property</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">estate.report_property_offer_sheet</field>
+		<field name="report_file">estate.report_property_offer_sheet</field>
+		<field name="print_report_name">'your property'</field>
+		<field name="binding_model_id" ref="model_estate_property"/>
+		<field name="binding_type">report</field>
+	</record>
+</odoo>
+
+
+
+
+
+
+
+
+

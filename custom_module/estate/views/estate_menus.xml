@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<!-- property ACTION -->
+	<record id ="estate_property_action" model ="ir.actions.act_window">
+		<field name = "name">Estate</field>
+		<field name = "res_model">estate.property</field>
+		<field name = "view_mode">kanban,tree,form</field>
+        <field name = "context">{'search_default_state': 1}</field>
+	</record>
+
+    <!-- property Type ACTION -->
+    <record id ="estate_property_Type_action" model ="ir.actions.act_window">
+        <field name = "name">Estate Type</field>
+        <field name = "res_model">estate.property.type</field>
+        <field name = "view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- property Tag ACTION -->
+    <record id ="estate_property_Tag" model ="ir.actions.act_window">
+        <field name = "name">Estate Tag</field>
+        <field name = "res_model">estate.property.tag</field>
+        <field name = "view_mode">tree,form</field>
+    </record>
+
+	<menuitem id = "estate_property_menu"
+        name = "Real estate"
+        action = "estate_property_action"
+        />
+        <menuitem id = "advertisement_menu" 
+            name = 'advertisement' parent = 'estate_property_menu' />
+    		<menuitem id = 'estate_property_menu_properties'
+       			name = 'property' parent = 'advertisement_menu' action = 'estate_property_action' />
+    <menuitem id ="setting_menu"
+            name = 'settingo'
+            parent = "estate_property_menu"/>
+            <menuitem id = "estate_property_setting_type"
+            name ="Property Types"
+            parent = "setting_menu"
+            action = "estate_property_Type_action"/>
+            <menuitem id = "estate_property_setting_tag"
+            name ="Property Tags"
+            parent = "setting_menu"
+            action = "estate_property_Tag"/>
+
+</odoo>

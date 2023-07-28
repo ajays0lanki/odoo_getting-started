@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+ 	<!-- tree view -->
+	<record id ="estate_property_type_tree_view" model = "ir.ui.view">
+		<field name ="name">Esate Type</field>
+		<field name ="model">estate.property.type</field>
+		<field name ="arch" type = "xml">
+			<tree>
+				<field name="sequence" widget="handle"/>
+				<field name = "name"/>
+				<field name = "offer_count"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- Form view -->
+	<record id ="estate_property_type_form_view" model = "ir.ui.view">
+		<field name ="name">Esate Type</field>
+		<field name ="model">estate.property.type</field>
+		<field name ="arch" type = "xml">
+			<form>
+				<sheet>
+					<h1>
+						<field name = "name"/>
+					</h1>
+					<div name = "button_box" position = "inside" >
+                                    <button name = 'btn_offer_count' type="object" class = 'oe_stat_button' icon = 'fa-money' >
+                                        <field name ='offer_count' widget = 'statinfo' string = 'offers' />
+                                    </button>
+                            </div>
+					<notebook>
+						<page string = "Properties">
+							<group string = "">
+								<field string = ""  name = "property_ids" >
+									<tree>
+	                                    <field name="name" string = "Title" />
+	                                    <field name="expected_price" string = "Expected Price"/>
+	                                    <field name="state" string = "Status" />
+	                                </tree>
+	                            </field>
+	                        </group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+</odoo>
+
+
+										
